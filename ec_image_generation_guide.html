@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EC商品画像生成活用ガイド</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            mermaid.initialize({
+                startOnLoad: true,
+                theme: 'base',
+                securityLevel: 'loose',
+                fontFamily: '"Kaisei Decol", sans-serif',
+                themeVariables: {
+                    primaryColor: '#4CAF50',
+                    primaryTextColor: '#333',
+                    primaryBorderColor: '#9575CD',
+                    lineColor: '#009688',
+                    secondaryColor: '#FFC107',
+                    tertiaryColor: '#E91E63'
+                },
+                flowchart: {
+                    cornerRadius: 15,
+                    curve: 'cardinal',
+                    htmlLabels: true
+                }
+            });
+        });
+    </script>
+    <style>
+        :root {
+            --main-color: #4CAF50;
+            --accent-1: #9575CD;
+            --accent-2: #FFC107;
+            --accent-3: #009688;
+            --accent-4: #E91E63;
+            --bg-color: #FAFAFA;
+            --text-color: #333;
+            --border-radius: 15px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            background: linear-gradient(135deg, var(--main-color), var(--accent-3));
+            color: var(--bg-color);
+            padding: 60px 20px;
+            margin: -20px -20px 40px -20px;
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.1) 50%, transparent 60%);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section {
+            margin-bottom: 60px;
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--main-color), var(--accent-1), var(--accent-2));
+        }
+
+        .section-icon {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            vertical-align: middle;
+            position: relative;
+        }
+
+        .icon-shopping {
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-4));
+        }
+
+        .icon-process {
+            background: linear-gradient(135deg, var(--accent-3), var(--main-color));
+        }
+
+        .icon-warning {
+            background: linear-gradient(135deg, var(--accent-2), var(--accent-4));
+        }
+
+        .section-icon::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 24px;
+            height: 24px;
+            background: var(--bg-color);
+            border-radius: 4px;
+        }
+
+        h2 {
+            font-size: 2em;
+            margin-bottom: 30px;
+            color: var(--main-color);
+            display: flex;
+            align-items: center;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            margin: 30px 0 15px 0;
+            color: var(--accent-1);
+            padding-left: 20px;
+            position: relative;
+        }
+
+        h3::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 20px;
+            background: var(--accent-2);
+            border-radius: 2px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(0, 150, 136, 0.1));
+            border-left: 5px solid var(--main-color);
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            position: relative;
+        }
+
+        .highlight-box::before {
+            content: '🛍️';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: var(--bg-color);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 1.2em;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .before-after {
+            padding: 25px;
+            border-radius: var(--border-radius);
+        }
+
+        .before {
+            background: linear-gradient(135deg, rgba(233, 30, 99, 0.1), rgba(149, 117, 205, 0.1));
+            border-left: 5px solid var(--accent-4);
+        }
+
+        .after {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(0, 150, 136, 0.1));
+            border-left: 5px solid var(--main-color);
+        }
+
+        .step-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 40px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-2), var(--accent-4));
+            color: var(--bg-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin: 0 auto 15px auto;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .step:not(:last-child)::after {
+            content: '→';
+            position: absolute;
+            right: -30px;
+            top: 30px;
+            font-size: 2em;
+            color: var(--accent-3);
+            z-index: 1;
+        }
+
+        .demo-example {
+            background: linear-gradient(135deg, rgba(255, 193, 7, 0.05), rgba(233, 30, 99, 0.05));
+            padding: 30px;
+            border-radius: var(--border-radius);
+            margin: 30px 0;
+            border: 1px solid rgba(255, 193, 7, 0.2);
+        }
+
+        .prompt-box {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            font-family: 'Courier New', monospace;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .prompt-box::before {
+            content: '💬';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: var(--bg-color);
+            padding: 5px 10px;
+            border-radius: 20px;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, rgba(255, 193, 7, 0.1), rgba(233, 30, 99, 0.1));
+            border: 1px solid var(--accent-2);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            margin: 25px 0;
+        }
+
+        .warning-box::before {
+            content: '⚠️';
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .feature-card {
+            background: linear-gradient(145deg, #ffffff, #f8f8f8);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, var(--main-color), var(--accent-1), var(--accent-2));
+            z-index: -1;
+            margin: -2px;
+            border-radius: var(--border-radius);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .feature-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: var(--accent-1);
+            margin-bottom: 15px;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 15px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        li::marker {
+            content: '▶️ ';
+        }
+
+        .mermaid {
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .usage-scenario {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .scenario-card {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.05), rgba(0, 150, 136, 0.05));
+            border: 1px solid rgba(76, 175, 80, 0.2);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            position: relative;
+        }
+
+        .scenario-card h4 {
+            color: var(--main-color);
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .step-flow {
+                flex-direction: column;
+            }
+            
+            .step:not(:last-child)::after {
+                content: '↓';
+                position: static;
+                display: block;
+                margin: 15px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🛒 EC商品画像生成活用法</h1>
+            <p class="subtitle">ナノバナナを活用した商品訴求画像の作成ガイド</p>
+        </header>
+
+        <section class="section">
+            <h2><span class="section-icon icon-shopping"></span>EC商品画像の課題と解決</h2>
+            
+            <div class="highlight-box">
+                <strong>EC販売での画像ニーズ</strong><br>
+                商品の物撮り画像はあるが、使用シーンや商品特徴を訴求する画像作成に時間とコストがかかる
+            </div>
+
+            <div class="comparison-grid">
+                <div class="before">
+                    <h3>💡 従来の課題</h3>
+                    <ul>
+                        <li>商品の物撮り画像のみでは訴求力不足</li>
+                        <li>使用シーン画像の作成にデザイナーが必要</li>
+                        <li>Canva等のデザインツールでの複雑な作業</li>
+                        <li>制作に時間とコストが大幅にかかる</li>
+                        <li>バリエーション作成の困難さ</li>
+                    </ul>
+                </div>
+                <div class="after">
+                    <h3>🚀 ナノバナナでの解決</h3>
+                    <ul>
+                        <li>プロンプト入力だけで複数パターン生成</li>
+                        <li>使用シーンの画像を自動合成</li>
+                        <li>商品特徴を視覚的に表現</li>
+                        <li>短時間での大量バリエーション作成</li>
+                        <li>非デザイナーでも高品質な結果</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mermaid">
+                graph TD
+                    A[🏪 EC商品販売の現実] --> B[商品画像だけでは<br>購買意欲が低い]
+                    A --> C[Amazon等では<br>複数の訴求画像が必須]
+                    
+                    D[📸 従来の制作プロセス] --> E[物撮り画像撮影]
+                    E --> F[デザイナーに依頼]
+                    F --> G[使用シーン画像作成]
+                    G --> H[特徴説明画像作成]
+                    H --> I[💰 高コスト・長時間]
+                    
+                    J[🍌 ナノバナナ活用] --> K[物撮り画像 + プロンプト]
+                    K --> L[自動で複数パターン生成]
+                    L --> M[⚡ 即座に完成]
+                    
+                    B --> D
+                    C --> D
+                    B --> J
+                    C --> J
+                    
+                    style A fill:#E91E63,color:#fff
+                    style I fill:#E91E63,color:#fff
+                    style J fill:#4CAF50,color:#fff
+                    style M fill:#4CAF50,color:#fff
+            </div>
+        </section>
+
+        <section class="section">
+            <h2><span class="section-icon icon-process"></span>実践例：モバイルバッテリー画像作成</h2>
+            
+            <div class="highlight-box">
+                <strong>実際のデモンストレーション</strong><br>
+                Anker製モバイルバッテリーを使用し、Amazon出品用の商品訴求画像を4パターン生成
+            </div>
+
+            <h3>📝 プロンプト例</h3>
+            <div class="prompt-box">
+                この商品のAmazonに出品する商品画像を作ってください。<br>
+                使用シーンや商品の特徴を4枚の画像で訴求したいです。<br>
+                文字は入れないでください。<br><br>
+                <strong>商品の特徴：</strong><br>
+                • 大容量10000mAh<br>
+                • 急速充電対応<br>
+                • コンパクトサイズ<br>
+                • 高品質・安全性
+            </div>
+
+            <h3>🎯 制作プロセス</h3>
+            <div class="step-flow">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>商品画像準備</h4>
+                    <p>既存の物撮り画像を<br>ナノバナナに投入</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>プロンプト作成</h4>
+                    <p>用途・特徴・枚数を<br>具体的に指定</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>画像生成実行</h4>
+                    <p>複数パターンの<br>訴求画像が自動生成</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h4>選別・調整</h4>
+                    <p>最適な画像を選択し<br>必要に応じて再生成</p>
+                </div>
+            </div>
+
+            <h3>📊 生成結果の評価</h3>
+            <div class="demo-example">
+                <h4>✅ 成功事例</h4>
+                <ul>
+                    <li><strong>使用シーンの表現：</strong>デスクでの作業シーン、外出時の携帯シーンなど</li>
+                    <li><strong>特徴の視覚化：</strong>コンパクトさや急速充電のイメージ表現</li>
+                    <li><strong>Amazonスタイル：</strong>ECサイトでよく見る訴求画像の雰囲気を再現</li>
+                </ul>
+
+                <h4>⚠️ 改善が必要な点</h4>
+                <ul>
+                    <li><strong>商品の正確性：</strong>実際の商品と細部が異なる場合がある</li>
+                    <li><strong>生成枚数：</strong>期待した4枚ではなく2枚のみ生成される場合</li>
+                    <li><strong>品質のばらつき：</strong>1回の実行では完璧な結果が得られない場合</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2><span class="section-icon icon-warning"></span>商用利用時の注意点と活用法</h2>
+            
+            <div class="warning-box">
+                <strong>重要な注意事項</strong><br>
+                AI生成画像をECサイトで直接使用する際は、商品の正確性とブランドイメージへの影響を十分検討する必要があります
+            </div>
+
+            <h3>🚨 直接使用のリスク</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-title">商品詳細の相違</div>
+                    <p>実際の商品と異なる細部が表現され、顧客からのクレームに発展する可能性</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-title">ガジェット系の特殊性</div>
+                    <p>スマートフォンアクセサリーなど、接続端子や細かい仕様が重要な商品では特に注意が必要</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-title">化粧品との違い</div>
+                    <p>パッケージの大幅な変更がない化粧品と比較し、電子機器は細部の精度が重要</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-title">品質保証の課題</div>
+                    <p>AI生成画像では実際の品質や機能を正確に表現できない場合がある</p>
+                </div>
+            </div>
+
+            <h3>✅ 推奨活用方法</h3>
+            <div class="usage-scenario">
+                <div class="scenario-card">
+                    <h4>🎨 デザイン指示書として</h4>
+                    <p>デザイナーへの依頼時に「こういうイメージで作成してください」という参考資料として活用。具体的なビジョンの共有に効果的。</p>
+                </div>
+                <div class="scenario-card">
+                    <h4>📝 企画提案資料として</h4>
+                    <p>社内での企画会議や商品戦略検討時のイメージ共有ツールとして使用。方向性の確認に最適。</p>
+                </div>
+                <div class="scenario-card">
+                    <h4>🚀 アイデア発想支援として</h4>
+                    <p>複数パターンの生成により、従来思いつかなかった訴求方法やレイアウトのヒントを得る。</p>
+                </div>
+                <div class="scenario-card">
+                    <h4>⏱️ 初期プロトタイプとして</h4>
+                    <p>本格制作前の方向性確認や、複数案の中から最適解を選定するための叩き台として活用。</p>
+                </div>
+            </div>
+
+            <div class="mermaid">
+                graph LR
+                    A[🍌 ナノバナナで<br>画像生成] --> B{品質・正確性<br>チェック}
+                    
+                    B -->|OK| C[✅ 直接使用<br>※化粧品等]
+                    B -->|NG| D[🎯 間接活用]
+                    
+                    D --> E[📋 デザイナーへの<br>指示書]
+                    D --> F[💡 企画提案<br>資料]
+                    D --> G[🚀 アイデア発想<br>支援]
+                    D --> H[⚡ プロトタイプ<br>作成]
+                    
+                    I[⚠️ 特に注意が必要] --> J[📱 ガジェット系]
+                    I --> K[🔌 電子機器]
+                    I --> L[⚙️ 精密機器]
+                    
+                    J --> B
+                    K --> B
+                    L --> B
+                    
+                    M[✅ 比較的安全] --> N[💄 化粧品]
+                    M --> O[👕 アパレル]
+                    M --> P[🍯 食品]
+                    
+                    N --> C
+                    O --> C
+                    P --> C
+                    
+                    style A fill:#4CAF50,color:#fff
+                    style C fill:#4CAF50,color:#fff
+                    style I fill:#E91E63,color:#fff
+                    style M fill:#009688,color:#fff
+            </div>
+
+            <h3>⚡ 最大のメリット：制作スピード</h3>
+            <div class="highlight-box">
+                <strong>時間短縮効果</strong><br>
+                従来数日～数週間かかっていた商品訴求画像の制作が、数分～数十分で完了。市場投入スピードの大幅向上を実現。
+            </div>
+        </section>
+    </div>
+</body>
+</html>

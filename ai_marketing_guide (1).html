@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI画像生成「ナノバナナ」マーケティング活用ガイド</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            mermaid.initialize({
+                startOnLoad: true,
+                theme: 'base',
+                securityLevel: 'loose',
+                fontFamily: '"Kaisei Decol", sans-serif',
+                themeVariables: {
+                    primaryColor: '#4CAF50',
+                    primaryTextColor: '#333',
+                    primaryBorderColor: '#9575CD',
+                    lineColor: '#009688',
+                    secondaryColor: '#FFC107',
+                    tertiaryColor: '#E91E63'
+                },
+                flowchart: {
+                    cornerRadius: 15,
+                    curve: 'cardinal',
+                    htmlLabels: true
+                }
+            });
+        });
+    </script>
+    <style>
+        :root {
+            --main-color: #4CAF50;
+            --accent-1: #9575CD;
+            --accent-2: #FFC107;
+            --accent-3: #009688;
+            --accent-4: #E91E63;
+            --bg-color: #FAFAFA;
+            --text-color: #333;
+            --border-radius: 15px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            background: linear-gradient(135deg, var(--main-color), var(--accent-3));
+            color: var(--bg-color);
+            padding: 60px 20px;
+            margin: -20px -20px 40px -20px;
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.1) 50%, transparent 60%);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section {
+            margin-bottom: 60px;
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--main-color), var(--accent-1), var(--accent-2));
+        }
+
+        .section-icon {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            vertical-align: middle;
+            position: relative;
+        }
+
+        .icon-person {
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-4));
+        }
+
+        .icon-tech {
+            background: linear-gradient(135deg, var(--accent-3), var(--main-color));
+        }
+
+        .icon-business {
+            background: linear-gradient(135deg, var(--accent-2), var(--accent-4));
+        }
+
+        .section-icon::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 24px;
+            height: 24px;
+            background: var(--bg-color);
+            border-radius: 4px;
+        }
+
+        h2 {
+            font-size: 2em;
+            margin-bottom: 30px;
+            color: var(--main-color);
+            display: flex;
+            align-items: center;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            margin: 30px 0 15px 0;
+            color: var(--accent-1);
+            padding-left: 20px;
+            position: relative;
+        }
+
+        h3::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 20px;
+            background: var(--accent-2);
+            border-radius: 2px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(0, 150, 136, 0.1));
+            border-left: 5px solid var(--main-color);
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            position: relative;
+        }
+
+        .highlight-box::before {
+            content: '💡';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: var(--bg-color);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 1.2em;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .feature-card {
+            background: linear-gradient(145deg, #ffffff, #f8f8f8);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, var(--main-color), var(--accent-1), var(--accent-2));
+            z-index: -1;
+            margin: -2px;
+            border-radius: var(--border-radius);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .feature-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: var(--accent-1);
+            margin-bottom: 15px;
+        }
+
+        .step-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 40px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-2), var(--accent-4));
+            color: var(--bg-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin: 0 auto 15px auto;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .step:not(:last-child)::after {
+            content: '→';
+            position: absolute;
+            right: -30px;
+            top: 30px;
+            font-size: 2em;
+            color: var(--accent-3);
+            z-index: 1;
+        }
+
+        .usage-example {
+            background: linear-gradient(135deg, rgba(233, 30, 99, 0.05), rgba(255, 193, 7, 0.05));
+            padding: 30px;
+            border-radius: var(--border-radius);
+            margin: 30px 0;
+            border: 1px solid rgba(233, 30, 99, 0.2);
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, rgba(255, 193, 7, 0.1), rgba(233, 30, 99, 0.1));
+            border: 1px solid var(--accent-2);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            margin: 25px 0;
+        }
+
+        .warning-box::before {
+            content: '⚠️';
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .pros, .cons {
+            padding: 25px;
+            border-radius: var(--border-radius);
+        }
+
+        .pros {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(0, 150, 136, 0.1));
+            border-left: 5px solid var(--main-color);
+        }
+
+        .cons {
+            background: linear-gradient(135deg, rgba(233, 30, 99, 0.1), rgba(149, 117, 205, 0.1));
+            border-left: 5px solid var(--accent-4);
+        }
+
+        .pros h4, .cons h4 {
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .pros h4 {
+            color: var(--main-color);
+        }
+
+        .cons h4 {
+            color: var(--accent-4);
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 15px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        li::marker {
+            content: '▶️ ';
+        }
+
+        .mermaid {
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .pros-cons {
+                grid-template-columns: 1fr;
+            }
+            
+            .step-flow {
+                flex-direction: column;
+            }
+            
+            .step:not(:last-child)::after {
+                content: '↓';
+                position: static;
+                display: block;
+                margin: 15px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🍌 ナノバナナ × マーケティング</h1>
+            <p class="subtitle">AI画像生成を活用したマーケティング業務革新ガイド</p>
+        </header>
+
+        <section class="section">
+            <h2><span class="section-icon icon-person"></span>講師プロフィール</h2>
+            
+            <div class="highlight-box">
+                <strong>ウェブマーケティング × AI の専門家</strong><br>
+                新卒からウェブマーケティング領域で豊富な経験を積み、現在はAI×マーケティングの分野で活動
+            </div>
+
+            <h3>🏢 主な経験領域</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-title">広告代理店</div>
+                    <p>ウェブマーケティングコンサルティング業務を担当</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-title">EC系ブランド</div>
+                    <p>商品開発からプロモーション支援まで幅広く対応</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-title">B2B SaaS企業</div>
+                    <p>マーケティング戦略の立案・実行を担当</p>
+                </div>
+            </div>
+
+            <h3>📢 現在の活動</h3>
+            <div class="step-flow">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>メディア運営</h4>
+                    <p>ニュースピックス「生成AIラボ」<br>ChatGPT研究所での記事執筆</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>動画配信</h4>
+                    <p>YouTube「JNAYP」<br>毎週水曜日更新でAI活用法を紹介</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>コミュニティ</h4>
+                    <p>「AI×マーケティング」<br>1800人規模のXコミュニティ運営</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2><span class="section-icon icon-tech"></span>ナノバナナとは</h2>
+            
+            <div class="highlight-box">
+                <strong>Geminiが開発した革新的なAI画像生成モデル</strong><br>
+                正式名称：Gemini 1.5 Flash Image（プレビュー版）
+            </div>
+
+            <h3>🌟 主な特徴</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-title">一貫性保持</div>
+                    <p>同じ人物・キャラクターを維持しながら、異なるバージョンの画像を生成可能</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-title">画像合成</div>
+                    <p>複数の画像を自然に組み合わせ、背景と人物の合成が簡単に実現</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-title">高度な編集</div>
+                    <p>従来難しかった被写体を変えずに背景のみを変更することが可能</p>
+                </div>
+            </div>
+
+            <div class="mermaid">
+                graph TD
+                    A[🎯 従来の課題] --> B[同じ被写体で<br>複数バージョン作成が困難]
+                    A --> C[画像合成には<br>高度なスキルが必要]
+                    A --> D[背景変更に<br>時間とコストがかかる]
+                    
+                    E[🍌 ナノバナナの解決策] --> F[被写体の一貫性を<br>自動で保持]
+                    E --> G[プロンプトだけで<br>簡単合成]
+                    E --> H[瞬時に背景変更<br>可能]
+                    
+                    B --> F
+                    C --> G  
+                    D --> H
+                    
+                    style A fill:#E91E63,color:#fff
+                    style E fill:#4CAF50,color:#fff
+                    style F fill:#009688,color:#fff
+                    style G fill:#009688,color:#fff
+                    style H fill:#009688,color:#fff
+            </div>
+
+            <h3>💻 利用環境</h3>
+            <ul>
+                <li><strong>Geminiアプリ：</strong>Web版・モバイル版（有料ユーザー対象）</li>
+                <li><strong>モデル設定：</strong>Gemini 2.5 Flashを選択する必要あり</li>
+                <li><strong>API：</strong>Google AI Studio、Gemini APIで利用可能</li>
+            </ul>
+
+            <div class="warning-box">
+                <strong>商用利用について</strong><br>
+                Google Cloudの公式サイトでは商用利用が可能とされていますが、著作権の問題は別途考慮が必要です。ディズニーキャラクターなど既存の著作物を無断使用することは著作権違反となりますのでご注意ください。
+            </div>
+        </section>
+
+        <section class="section">
+            <h2><span class="section-icon icon-business"></span>マーケティング活用法</h2>
+
+            <div class="highlight-box">
+                <strong>実践的な活用シーン</strong><br>
+                広告クリエイティブ、ランディングページ、EC商品画像など、マーケティング業務で頻繁に使用する画像制作を効率化
+            </div>
+
+            <h3>🎨 活用事例1：商品の背景合成</h3>
+            <div class="usage-example">
+                <h4>シチュエーション</h4>
+                <p>ドリンク商品の画像と海の背景画像を組み合わせて、魅力的なバナー画像を作成したい</p>
+                
+                <h4>従来の方法</h4>
+                <ul>
+                    <li>Photoshopなどの画像編集ソフトが必要</li>
+                    <li>デザイナーレベルのスキルが要求される</li>
+                    <li>時間とコストが大幅にかかる</li>
+                </ul>
+
+                <h4>ナノバナナでの解決法</h4>
+                <div class="step-flow">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h4>画像添付</h4>
+                        <p>商品画像と背景画像をアップロード</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h4>プロンプト入力</h4>
+                        <p>「ドリンクの背景を海の画像に変更し、手に持った構図にして」</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h4>自動生成</h4>
+                        <p>自然な合成画像が瞬時に完成</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>🛍️ 活用事例2：EC商品の背景変更</h3>
+            <div class="usage-example">
+                <h4>シチュエーション</h4>
+                <p>白背景で撮影した商品写真を、よりアピール力のある背景に変更したい</p>
+                
+                <div class="pros-cons">
+                    <div class="pros">
+                        <h4>👍 メリット</h4>
+                        <ul>
+                            <li>商品の主体を変えずに背景のみ変更可能</li>
+                            <li>季節やキャンペーンに合わせた背景設定</li>
+                            <li>複数パターンの画像を短時間で作成</li>
+                            <li>撮影コストの大幅削減</li>
+                        </ul>
+                    </div>
+                    <div class="cons">
+                        <h4>⚠️ 注意点</h4>
+                        <ul>
+                            <li>生成される画像の品質確認が必要</li>
+                            <li>ブランドイメージとの整合性チェック</li>
+                            <li>商用利用時の権利関係の確認</li>
+                            <li>AI生成であることの明記を検討</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h4>具体的な指示例</h4>
+                <p><code>「背景にグリーンを基調とした自然な環境を追加してください。商品の主体は変更しないでください」</code></p>
+            </div>
+
+            <h3>📈 マーケティング効果の最大化</h3>
+            <div class="mermaid">
+                graph LR
+                    A[📸 商品撮影] --> B[🍌 ナノバナナ処理]
+                    B --> C[🎨 複数バージョン生成]
+                    C --> D[📊 A/Bテスト実施]
+                    D --> E[📈 最適化された<br>クリエイティブ選定]
+                    
+                    F[⏰ 時間短縮] --> G[💰 コスト削減]
+                    G --> H[🚀 施策スピード向上]
+                    H --> I[📊 より多くの<br>テストパターン実現]
+                    
+                    B --> F
+                    
+                    style A fill:#9575CD,color:#fff
+                    style B fill:#4CAF50,color:#fff
+                    style E fill:#E91E63,color:#fff
+                    style I fill:#FFC107,color:#333
+            </div>
+
+            <h3>🎯 適用領域の拡張</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-title">広告バナー</div>
+                    <p>SNS広告、ディスプレイ広告用のクリエイティブ制作</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-title">LP画像</div>
+                    <p>ランディングページでのコンバージョン向上を狙った画像作成</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-title">プレゼン資料</div>
+                    <p>営業資料やマーケティング提案書での視覚的訴求力向上</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-title">SNS投稿</div>
+                    <p>ブランドの世界観を統一したSNSコンテンツ制作</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2><span class="section-icon icon-tech"></span>実践事例：社内ツール開発</h2>
+            
+            <div class="highlight-box">
+                <strong>バナー画像エディターアプリの開発</strong><br>
+                V0.AIRを使用してノーコードでバナー編集ツールを作成し、社内での活用を実現
+            </div>
+
+            <h3>🛠️ アプリケーション開発の実例</h3>
+            <div class="usage-example">
+                <h4>開発背景</h4>
+                <p>Geminiチャットでもナノバナナは使用できるが、より使いやすくするために専用アプリケーションを開発</p>
+                
+                <h4>使用ツール</h4>
+                <p><strong>V0.AIR（ノーコーディングプラットフォーム）</strong></p>
+                <ul>
+                    <li>Replit、Boltと同様のサービス</li>
+                    <li>初心者でも使いやすいインターフェース</li>
+                    <li>デザインが凝った作品の閲覧・参照が可能</li>
+                    <li>他のユーザーの作品をベースとした開発も対応</li>
+                </ul>
+            </div>
+
+            <div class="mermaid">
+                graph TD
+                    A[💡 課題認識] --> B[Geminiチャットは<br>汎用的すぎる]
+                    A --> C[AI初心者には<br>ハードルが高い]
+                    
+                    D[🛠️ 解決策] --> E[専用アプリの開発]
+                    E --> F[用途を限定した<br>シンプルUI]
+                    E --> G[プリセット選択肢の<br>提供]
+                    E --> H[段階的な<br>操作ガイド]
+                    
+                    B --> F
+                    C --> G
+                    
+                    I[📈 効果] --> J[社内利用率向上]
+                    I --> K[操作ミス削減]
+                    I --> L[品質の安定化]
+                    
+                    F --> J
+                    G --> K
+                    H --> L
+                    
+                    style A fill:#E91E63,color:#fff
+                    style D fill:#4CAF50,color:#fff
+                    style I fill:#FFC107,color:#333
+            </div>
+
+            <h3>🎯 社内活用のメリット</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-title">操作の簡略化</div>
+                    <p>「画像をここにアップロード」→「編集内容を入力」のシンプルフロー</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-title">テンプレート化</div>
+                    <p>頻繁に使用する編集パターンをプリセットとして事前設定</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-title">教育コスト削減</div>
+                    <p>AI初心者でも直感的に操作できるUI設計</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-title">品質統一</div>
+                    <p>ブランドガイドラインに沿った出力設定の標準化</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2><span class="section-icon icon-business"></span>高度な編集テクニック</h2>
+            
+            <div class="highlight-box">
+                <strong>細かい要素の個別編集</strong><br>
+                文字の色変更、グラデーション追加など、従来はデザインツールが必要だった細かい調整も可能
+            </div>
+
+            <h3>✏️ 文字要素の編集</h3>
+            <div class="usage-example">
+                <h4>実例：サムネイル画像の文字色変更</h4>
+                <p>「Geminiが最強」という文字の「Gemini」部分のみをゴールドカラーに変更</p>
+                
+                <div class="step-flow">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h4>対象指定</h4>
+                        <p>変更したい文字要素を具体的に指定</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h4>効果指定</h4>
+                        <p>「キラキラなゴールドに」「グラデーション入り」など詳細に指定</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h4>自動適用</h4>
+                        <p>デザインツールでは複雑な文字エフェクトも瞬時に適用</p>
+                    </div>
+                </div>
+
+                <div class="pros-cons">
+                    <div class="pros">
+                        <h4>👍 ナノバナナの優位性</h4>
+                        <ul>
+                            <li>Canvaなどでは困難な複雑エフェクトも簡単</li>
+                            <li>レイヤー操作の知識不要</li>
+                            <li>試行錯誤が高速で可能</li>
+                            <li>非デザイナーでも高品質な結果</li>
+                        </ul>
+                    </div>
+                    <div class="cons">
+                        <h4>⚠️ 制約と対策</h4>
+                        <ul>
+                            <li>意図しない範囲に適用される場合あり</li>
+                            <li>複数回の試行が必要な場合あり</li>
+                            <li>英語プロンプトの方が精度が高い</li>
+                            <li>具体的な指示が成功の鍵</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3>🌐 英語プロンプトの活用</h3>
+            <div class="warning-box">
+                <strong>重要なTips</strong><br>
+                日本語での指示が思うような結果にならない場合、英語プロンプトに変更することで大幅に改善することが多い
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-title">翻訳による改善</div>
+                    <p>日本語プロンプト → 英語翻訳 → ナノバナナで実行</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-title">専用GPTの活用</div>
+                    <p>ナノバナナ用プロンプト生成GPTを使用して最適化された指示文を作成</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-title">バイリンガル対応</div>
+                    <p>日本語・英語両方のプロンプトを生成してくれるツールの活用</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-title">精度向上</div>
+                    <p>英語プロンプトにより期待する結果により近い出力が得られる</p>
+                </div>
+            </div>
+
+            <div class="mermaid">
+                graph LR
+                    A[📝 日本語での<br>要望整理] --> B[🔄 英語翻訳<br>or専用GPT使用]
+                    B --> C[🍌 ナノバナナで<br>実行]
+                    C --> D[✅ 期待通りの<br>結果？]
+                    
+                    D -->|No| E[📝 プロンプト<br>調整]
+                    E --> B
+                    D -->|Yes| F[🎯 完成]
+                    
+                    G[🛠️ 支援ツール] --> H[ChatGPT<br>翻訳機能]
+                    G --> I[専用GPT<br>プロンプト生成]
+                    G --> J[Google翻訳<br>などの活用]
+                    
+                    H --> B
+                    I --> B
+                    J --> B
+                    
+                    style A fill:#9575CD,color:#fff
+                    style F fill:#4CAF50,color:#fff
+                    style G fill:#FFC107,color:#333
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>🚀 まとめ：マーケティング業務の革新</h2>
+            
+            <div class="highlight-box">
+                <strong>ナノバナナがもたらす変化</strong><br>
+                従来は専門的なスキルと時間を要していた画像制作が、プロンプト入力だけで高品質な結果を得られるように
+            </div>
+
+            <div class="mermaid">
+                graph TD
+                    A[🍌 ナノバナナの導入] --> B[⚡ 制作時間の短縮]
+                    A --> C[💰 コスト削減]
+                    A --> D[🎯 品質の向上]
+                    
+                    B --> E[📈 より多くの<br>テストパターン]
+                    C --> F[🚀 予算の<br>効果的配分]
+                    D --> G[🏆 競争優位性の<br>確保]
+                    
+                    E --> H[🎯 最適化された<br>マーケティング]
+                    F --> H
+                    G --> H
+                    
+                    style A fill:#4CAF50,color:#fff
+                    style H fill:#E91E63,color:#fff
+            </div>
+
+            <h3>📋 実践に向けた次のステップ</h3>
+            <div class="step-flow">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>環境準備</h4>
+                    <p>Geminiアプリの有料プランへの登録<br>モデル設定の確認</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>小規模テスト</h4>
+                    <p>既存の商品画像を使って<br>機能・品質の検証</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>本格運用</h4>
+                    <p>マーケティング施策への<br>本格的な組み込み</p>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <strong>運用時の留意点</strong><br>
+                生成された画像の品質確認、ブランドガイドラインとの整合性チェック、著作権への配慮を怠らないよう注意してください。AI生成画像であることの明記も検討しましょう。
+            </div>
+        </section>
+    </div>
+</body>
+</html>
